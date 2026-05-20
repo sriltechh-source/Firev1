@@ -44,19 +44,65 @@ onAuthStateChanged(auth, (user) => {
 });
 
 window.placeOrder = async () => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-        await addDoc(collection(db, "orders"), {
-            customerName: auth.currentUser?.displayName,
 
-            email: auth.currentUser?.email,
+  alert("Button clicked");
 
-            latitude: position.coords.latitude,
+  if(!auth.currentUser){
 
-            longitude: position.coords.longitude,
+    alert("Please login first");
 
-            createdAt: serverTimestamp(),
+    return;
+
+  }
+
+  if(!navigator.geolocation){
+
+    alert("Geolocation not supported");
+
+    return;
+
+  }
+
+  navigator.geolocation.getCurrentPosition(
+
+    async(position)=>{
+
+      alert("Location captured");
+
+      try{
+
+        const docRef = await addDoc(collection(db, "orders"), {
+
+          customerName: auth.currentUser.displayName,
+
+          email: auth.currentUser.email,
+
+          latitude: position.coords.latitude,
+
+          longitude: position.coords.longitude,
+
+          createdAt: serverTimestamp()
+
         });
 
-        alert("Order Saved!");
-    });
+        alert("Order Saved: " + docRef.id);
+
+      } catch(err){
+
+        console.log(err);
+
+        alert("Firestore Error: " + err.message);
+
+      }
+
+    },
+
+    (error)=>{
+
+      alert("Location Error: " + error.message);
+
+    }
+
+  );
+
 };

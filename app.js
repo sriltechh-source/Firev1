@@ -14,15 +14,16 @@ import {
     serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "PASTE_API_KEY",
-    authDomain: "PASTE_AUTH_DOMAIN",
-    projectId: "PASTE_PROJECT_ID",
-    storageBucket: "PASTE_STORAGE_BUCKET",
-    messagingSenderId: "PASTE_SENDER_ID",
-    appId: "PASTE_APP_ID",
+  apiKey: "AIzaSyCYX_DIMdhzEHjVFcsBqvIxFiAHBFpS2WI",
+  authDomain: "mana-8d9ba.firebaseapp.com",
+  projectId: "mana-8d9ba",
+  storageBucket: "mana-8d9ba.firebasestorage.app",
+  messagingSenderId: "214898827882",
+  appId: "1:214898827882:web:f3d4808fb8a548f9136013",
+  measurementId: "G-BPJNBWT2J5"
 };
-
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
